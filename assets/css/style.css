@@ -18,6 +18,13 @@
   --white: hsl(0, 100%, 100%);
   --onyx: hsl(0, 0%, 27%);
 
+  --color-main: #25ACDC;
+  --color-secondary: #CF2077;
+  --color-tertiary: #1F1B16;
+  --color-quaternary: #BAD22B;
+  --color-quinary: #EFB110;
+
+
   /**
    * typography
    */
