@@ -1,5 +1,8 @@
 'use strict';
 
+
+
+
 // modal variables
 const modal = document.querySelector('[data-modal]');
 const modalCloseBtn = document.querySelector('[data-modal-close]');
