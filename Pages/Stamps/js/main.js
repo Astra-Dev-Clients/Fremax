@@ -267,8 +267,8 @@ function addToCart() {
       // productThumb = productThumb.querySelector("img").src;
       let productPrice = document
         .querySelector(".product-details-wrapper .current-price")
-        .textContent.replace("$", "");
-      let totalPrice = "$" + parseInt(getProductQuantity * productPrice);
+        .textContent.replace("Ksh", "");
+      let totalPrice = "Ksh" + parseInt(getProductQuantity * productPrice);
       if (cartList.childElementCount == 0) {
         checkOutBtn.style.display = "block";
         cartList.innerHTML = "";

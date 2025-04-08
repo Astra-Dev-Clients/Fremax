@@ -130,7 +130,7 @@ $email = htmlspecialchars($details->Email, ENT_QUOTES, 'UTF-8'); // Sanitize out
 
 <!-- Button to Trigger Popover -->
 <div class="popover-container">
-        <button class="add-product-btn" onclick="togglePopover()">➕ Add Product</button>
+        <!-- <button class="add-product-btn" onclick="togglePopover()">➕ Add Product</button> -->
         
         <!-- Popover Form -->
         <div class="popover" id="popoverForm">
@@ -166,7 +166,7 @@ $email = htmlspecialchars($details->Email, ENT_QUOTES, 'UTF-8'); // Sanitize out
                     </div>
                 </div>
             </div>
-            <nav class="navbar-mobile">
+<nav class="navbar-mobile">
     <div class="container-fluid">
         <ul class="navbar-mobile__list list-unstyled">
             <li class="has-sub">

@@ -22,20 +22,18 @@
  $query = "SELECT * FROM products where category = 'Stamps'";
  $result = mysqli_query($conn, $query);
  $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
-  
 
-
-  // check if there are products    
- 
   // get the first product
   $first_product = $products[0];
   $first_product_name = $first_product['name'];
   $first_product_price = $first_product['price'];
   $first_product_description = $first_product['description'];
   $first_product_category = $first_product['category'];
+  // $first_product_created_at = $first_product['Created_At'];
+  // $first_product_updated_at = $first_product['Updated_At'];
+  // $first_product_sn = $first_product['SN'];
   $first_product_image = $first_product['poster'];
-
-
+  // $first_product_image_thumbnail = $first_product['Product_Image_Thumbnail']; 
 
 
 
@@ -59,7 +57,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
-      rel="stylesheet"/>
+      rel="stylesheet"
+    />
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Main Css File -->
@@ -82,7 +82,7 @@
 
             <div class="main-navgation hide-for-mobile">
               <a href="#">Collections</a>
-              <a href="dater.php">Dater Stamps</a>
+              <a href="#">Dater Stamps</a>
               <a href="#">Pocket Stamps</a>
               <a href="#">Heavy Duty</a>
               <a href="#">Company Seals</a>
@@ -93,7 +93,7 @@
                 <img src="./images/icon-close.svg" alt="Close Icon" />
               </div>
               <a href="#">Collections</a>
-              <a href="dater.php">Dater Stamps</a>
+              <a href="#">Dater Stamps</a>
               <a href="#">Pocket Stamps</a>
               <a href="#">Heavy Duty</a>
               <a href="#">Company Seals</a>
@@ -120,8 +120,7 @@
                   <button
                     type="button"
                     aria-label="Check out"
-                    class="button checkout-btn"
-                  >
+                    class="button checkout-btn">
                     Checkout
                   </button>
                 </div>
@@ -141,10 +140,13 @@
       <section class="hero mt-5">
         <div class="container">
           <div class="hero-content">
-            <h1>Stamps</h1>
+            <h1>Dater Stamp</h1>
             <p>
-              We are the leading manufacturer of stamps in Kenya. We have a
-              wide range of stamps to choose from. We also do custom stamps.
+            This are self inking stamps with an inbuilt date part. all you need to do is to adjust the date to the current and you are good to go.
+            Comes fitted with high-quality ink pad and can provide thousands of impressions.
+            The date part default colour is red while the text remains blue.This category comes in various shapes and sizes including oval, round and rectangle.
+            You can use this kind of stamp to stamp some date invoices and other time- sensitive documents.
+            The movable bands make routine tasks simple when using date stamps for month, day, and year.
             </p>
             <button type="button" class="button shop-now-btn">
               Shop Now
@@ -220,7 +222,7 @@
                 <span class="discount">50%</span>
               </div>
               <div class="previous-price-wrapper">
-                <span> Ksh  <span class="previous-price"><?=$first_product_price +  ($first_product_price * 0.2)?></span></span>
+                <span class="previous-price"><?=$first_product_price + 200?></span>
               </div>
             </div>
 
@@ -290,7 +292,6 @@
                          <img src="../../dashboard/Admin/'.$poster.'" class="card-img-top" alt="Event Image">
                          <div class="card-body">
                          <h5 class="card-title">' .$name. '</h5>
-                         <p class="text-muted text-capitalize"> Ksh '.$price.'</p>
                          <p class="card-text text-capitalize">'.$description.'</p>
                          <p class="text-muted text-capitalize">'.$category.'</p>
                          <a href="#" class="btn" style="background-color: #ff7d1a; color: #fff;">Order Now</a>

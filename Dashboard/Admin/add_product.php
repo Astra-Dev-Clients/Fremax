@@ -49,13 +49,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = (float) $_POST["price"];
     $description = $conn->real_escape_string($_POST["product-description"]);
     $category = $conn->real_escape_string($_POST["product-category"]);
+    $subcategory = $conn->real_escape_string($_POST["subcategory"]);
 
     // Insert into database
-    $sql = "INSERT INTO products (poster, name, price, description, category)
-            VALUES ('$poster', '$name', $price, '$description', '$category')";
+    $sql = "INSERT INTO products (poster, name, price, description, category, subcategory)
+            VALUES ('$poster', '$name', $price, '$description', '$category', '$subcategory')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Product added successfully!";
+        echo "<script> alert('Product added successfully!'); </script>";
     } else {
         echo "Error: " . $conn->error;
     }
@@ -203,7 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="./images/logo.png" style="width:179px; height:52px;" alt="Kenya Tech Events Logo" />
+                            <img src="images/logo-banner.png" style="width:179px; height:52px;" alt="Fremax Graphics Logo" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -213,52 +214,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
             </div>
-        <nav class="navbar-mobile">
-            <div class="container-fluid">
-                <ul class="navbar-mobile__list list-unstyled">
-                    <li>
-                        <a href="dashboard.html">
-                            <i class="fas fa-tachometer-alt"></i>Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="analytics.html">
-                            <i class="fas fa-chart-bar"></i>Analytics
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tickets.html">
-                            <i class="fas fa-ticket-alt"></i>Tickets
-                        </a>
-                    </li>
-                    <li>
-                        <a href="attendees.html">
-                            <i class="fas fa-users"></i>Attendees
-                        </a>
-                    </li>
-                    <li>
-                        <a href="events.html">
-                            <i class="fas fa-calendar-alt"></i>Events
-                        </a>
-                    </li>
-                    <li>
-                        <a href="venues.html">
-                            <i class="fas fa-map-marker-alt"></i>Venues
-                        </a>
-                    </li>
-                    <li>
-                        <a href="reports.html">
-                            <i class="fas fa-file-alt"></i>Reports
-                        </a>
-                    </li>
-                    <li>
-                        <a href="settings.html">
-                            <i class="fas fa-cogs"></i>Settings
-                        </a>
-                    </li>
+            <nav class="navbar-mobile">
+    <div class="container-fluid">
+        <ul class="navbar-mobile__list list-unstyled">
+            <li class="has-sub">
+                <a class="js-arrow" href="#">
+                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                    <li><a href="dashboard-overview.html">Overview</a></li>
+                    <li><a href="dashboard-sales.html">Sales Analytics</a></li>
+                    <li><a href="dashboard-customers.html">Customer Insights</a></li>
                 </ul>
-            </div>
-        </nav>
+            </li>
+            <li>
+                <a href="categories.html">
+                    <i class="fas fa-tags"></i>Categories</a>
+            </li>
+            <li>
+                <a href="orders.html">
+                    <i class="fas fa-shopping-cart"></i>Orders</a>
+            </li>
+            <li>
+                <a href="customers.html">
+                    <i class="fas fa-users"></i>Customers</a>
+            </li>
+            <li>
+                <a href="reviews.html">
+                    <i class="fas fa-star"></i>Reviews</a>
+            </li>
+            <li>
+                <a href="inventory.html">
+                    <i class="fas fa-warehouse"></i>Inventory</a>
+            </li>
+            <li>
+                <a href="settings.html">
+                    <i class="fas fa-cogs"></i>Store Settings</a>
+            </li>
+            <li>
+                <a href="support.html">
+                    <i class="fas fa-life-ring"></i>Support</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
         </header>
         <!-- END HEADER MOBILE-->
@@ -267,70 +265,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/logo.png" style="width:179px; height:52px;" alt="Kenya Tech Events Logo" />
+                <img src="images/logo-banner.png" style="width:179px; height:52px;" alt="Fremax Graphics Logo" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
             <nav class="navbar-sidebar">
-    <ul class="list-unstyled navbar__list">
-        <li>
-            <a href="dashboard.html">
-                <i class="fas fa-tachometer-alt"></i>Dashboard
-            </a>
-        </li>
-        <li>
-            <a href="analytics.html">
-                <i class="fas fa-chart-bar"></i>Analytics
-            </a>
-        </li>
-        <li>
-            <a href="tickets.html">
-                <i class="fas fa-ticket-alt"></i>Tickets
-            </a>
-        </li>
-        <li>
-            <a href="attendees.html">
-                <i class="fas fa-users"></i>Attendees
-            </a>
-        </li>
-        <li>
-            <a href="events.html">
-                <i class="fas fa-calendar-alt"></i>Events
-            </a>
-        </li>
-        <li>
-            <a href="venues.html">
-                <i class="fas fa-map-marker-alt"></i>Venues
-            </a>
-        </li>
-        <li>
-            <a href="reports.html">
-                <i class="fas fa-file-alt"></i>Reports
-            </a>
-        </li>
-        <li>
-            <a href="settings.html">
-                <i class="fas fa-cogs"></i>Settings
-            </a>
-        </li>
-        <li class="has-sub">
-            <a class="js-arrow" href="#">
-                <i class="fas fa-user-circle"></i>Account
-            </a>
-            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                <li>
-                    <a href="login.html">Login</a>
+            <ul class="list-unstyled navbar__list">
+                <li class="active has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li><a href="dashboard-overview.html">Overview</a></li>
+                        <li><a href="dashboard-sales.html">Sales Analytics</a></li>
+                        <li><a href="dashboard-customers.html">Customer Insights</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="register.html">Register</a>
+                    <a href="categories.html">
+                        <i class="fas fa-tags"></i>Categories</a>
                 </li>
                 <li>
-                    <a href="forget-pass.html">Forgot Password</a>
+                    <a href="orders.html">
+                        <i class="fas fa-shopping-cart"></i>Orders</a>
+                </li>
+                <li>
+                    <a href="customers.html">
+                        <i class="fas fa-users"></i>Customers</a>
+                </li>
+                <li>
+                    <a href="reviews.html">
+                        <i class="fas fa-star"></i>Reviews</a>
+                </li>
+                <li>
+                    <a href="inventory.html">
+                        <i class="fas fa-warehouse"></i>Inventory</a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cogs"></i>Store Settings</a>
+                </li>
+                <li>
+                    <a href="support.html">
+                        <i class="fas fa-life-ring"></i>Support</a>
                 </li>
             </ul>
-        </li>
-    </ul>
-</nav>
+        </nav>
 
             </div>
         </aside>
@@ -545,8 +524,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
 
 
-
-
                                 <div class="form-group">
                                     <label for="price" class="control-label mb-1">Price</label>
                                     <input id="price" name="price" type="number" class="form-control" required placeholder="Enter Product Price">
@@ -558,16 +535,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="form-group">
                                     <label for="product-description" class="control-label mb-1">Description</label>
                                     <textarea id="product-description" name="product-description" class="form-control" rows="4" required placeholder="Describe your event..."></textarea>
+                                    <small id="word-count" class="form-text text-muted">Word count: 0/20</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="product-category" class="control-label mb-1">Category</label>
                                     <select id="product-category" name="product-category" class="form-control" required>
-                                        <option value="">-- Select category --</option>
+                                        <option value="" disabled selected>-- Select category --</option>
                                         <option value="Stamps">Stamps</option>
-                                        <option value="Printing">Printing</option>
+                                        <!-- <option value="Printing">Printing</option>
                                         <option value="Design">Design</option>
-                                        <option value="Branding">Branding</option>
+                                        <option value="Branding">Branding</option> -->
                                     </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="subcategory" class="control-label mb-1">Sub Category</label>
+                                    <select name="subcategory" id="subcategory"  class="form-control" >
+                                        <option value="" disabled selected>-- Select sub category --</option> 
+                                      <option value="Dater_Stamp">Dater Stamp</option>
+                                      <option value="Pocket_Stamp">Pocket Stamp</option>
+                                      <option value="Pocket_Stamp">Heavy Stamp</option>
+                                      <option value="Pocket_Stamp">Plain Text (Non Dater) Stamp</option>
+                                    </select>
+                                    <!-- <input type="text" id="subcategory" name="subcategory" class="form-control" required placeholder="Enter sub category"> -->
                                 </div>
                                 <div>
                                     <button id="event-submit-button" type="submit" class="btn btn-lg btn-primary btn-block">
@@ -586,6 +576,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
     </div>
+
+
+    <!-- word count -->
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const textarea = document.getElementById("product-description");
+    const wordCountDisplay = document.getElementById("word-count");
+
+    textarea.addEventListener("input", function () {
+        let words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+
+        if (words.length > 20) {
+            alert("You can only enter up to 20 words.");
+            words = words.slice(0, 20);
+            textarea.value = words.join(" ");
+        }
+
+        wordCountDisplay.textContent = `Word count: ${words.length}/20`;
+    });
+});
+</script>
 
 
 
