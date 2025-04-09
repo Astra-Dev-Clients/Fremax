@@ -3,23 +3,8 @@
  include "../../database/db.php";
 
 
-
-
-//  CREATE TABLE products (
-//   id INT AUTO_INCREMENT PRIMARY KEY,
-//   poster VARCHAR(255) NOT NULL,
-//   name VARCHAR(100) NOT NULL,
-//   price DECIMAL(10, 2) NOT NULL,
-//   description TEXT NOT NULL,
-//   category VARCHAR(50) NOT NULL,
-//   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-// );
-
-
-
-
 //  get all products
- $query = "SELECT * FROM products where category = 'Stamps' AND subcategory = 'Dater_Stamp'";
+ $query = "SELECT * FROM products where category = 'Stamps' AND subcategory = 'Pocket_Stamp'";
  $result = mysqli_query($conn, $query);
  $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -33,7 +18,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Astra Softwares" />
+    <meta name="author" content="Mohamed Aridah" />
     <link
       rel="icon"
       type="image/png"
@@ -69,7 +54,7 @@
             </div>
 
             <div class="main-navgation hide-for-mobile">
-            <a href="index.php">Collections</a>
+              <a href="index.php">Collections</a>
               <a href="dater.php">Dater Stamps</a>
               <a href="pocket.php">Pocket Stamps</a>
               <a href="heavy.php">Heavy Duty</a>
@@ -130,13 +115,9 @@
       <section class="hero mt-5">
         <div class="container">
           <div class="hero-content">
-            <h1>Dater Stamp</h1>
+            <h1>Pocket Stamps</h1>
             <p>
-            This are self inking stamps with an inbuilt date part. all you need to do is to adjust the date to the current and you are good to go.
-            Comes fitted with high-quality ink pad and can provide thousands of impressions.
-            The date part default colour is red while the text remains blue.This category comes in various shapes and sizes including oval, round and rectangle.
-            You can use this kind of stamp to stamp some date invoices and other time- sensitive documents.
-            The movable bands make routine tasks simple when using date stamps for month, day, and year.
+            Handy Stamps are portable yet durable and great when stamping on the go is necessary. The unique design makes handling easy as it can be operated with one hand.
             </p>
             <button type="button" class="button shop-now-btn">
               Shop Now
@@ -144,6 +125,7 @@
           </div>
         </div>
       </section>
+
 
       <section class="product-wrapper container">
 
@@ -243,6 +225,9 @@
 
 
 
+
+
+
       <!-- map all stamps in a boostrap container fromt the database -->
 
 <section class="container">
@@ -250,7 +235,7 @@
 
    <?php
 
-          $getproducts = "SELECT * FROM products where category = 'Stamps' AND subcategory = 'Dater_Stamp'";
+          $getproducts = "SELECT * FROM products where category = 'Stamps' AND subcategory = 'Pocket_Stamp'";
           $result = mysqli_query($conn, $getproducts);
 
         
@@ -260,7 +245,7 @@
 
           // Loop through the products and display them in a container
       
-                      $sql = "SELECT * FROM products WHERE category = 'Stamps' AND subcategory = 'Dater_Stamp' ";
+                      $sql = "SELECT * FROM products WHERE category = 'Stamps' AND subcategory = 'Pocket_Stamp'";
                       $result = $conn->query($sql);
       
                       if ($result->num_rows > 0) {

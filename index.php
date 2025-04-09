@@ -1,4 +1,14 @@
+<?php
+// include Database - connection
+include 'database/db.php';
 
+
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -983,205 +993,115 @@
 
                 <div class="showcase-container">
 
-                  <div class="showcase">
 
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/Company_seal.jpg" alt="custoized Company seals" width="70" class="showcase-img">
-                    </a>
+                 <?php
+                    // Assuming $conn is your database connection
+                    $query = "SELECT * FROM products WHERE category = 'Stamps' LIMIT 0,4";
+                    $result = mysqli_query($conn, $query);
 
-                    <div class="showcase-content">
+                    if ($result && mysqli_num_rows($result) > 0) {
+                      while ($row = mysqli_fetch_assoc($result)) {
 
-                      <a href="#">
-                        <h4 class="showcase-title">Company seals</h4>
-                      </a>
+                        $poster = htmlspecialchars($row['poster']);
+                        $name = htmlspecialchars($row['name']);
+                        $price = number_format($row['price'], 2);
+                        $description = htmlspecialchars($row['description']);
+                        $category = htmlspecialchars($row['category']);
+                        $product_image = "./Dashboard/admin/" . $poster;
 
-                      <a href="#" class="showcase-category">Customized</a>
+                    echo '
+                      <div class="showcase">
 
-                      <div class="price-box">
-                        <p class="price">Ksh 2,999</p>
-                        <del>Ksh 3499.00</del>
+                        <a href="#" class="showcase-img-box">
+                          <img src="'.$product_image.'" alt="' . $name . '" width="70" class="showcase-img">
+                        </a>
+
+                        <div class="showcase-content">
+
+                          <a href="#">
+                            <h4 class="showcase-title">' . $name . '</h4>
+                          </a>
+
+                          <a href="#" class="showcase-category">' . $category . '</a>
+
+                          <div class="price-box">
+                            <p class="price">Ksh ' . $price . '</p
+                            <del>Ksh ' . number_format($row['price'] * 1.2, 2) . '</del>
+                          </div>
+
+                        </div>
+
                       </div>
+                    ';
+                    }
+                  } else {
+                    echo "<p>No products found in this category.</p>";
+                  }
 
-                    </div>
+            ?>
+          </div>
+        <div class="showcase-container">
+                
+              <?php
 
-                  </div>
+                  // Assuming $conn is your database connection
+                        $query = "SELECT * FROM products WHERE category = 'Stamps' LIMIT 4,4";
+                        $result = mysqli_query($conn, $query);
 
-                  <div class="showcase">
-                  
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/Stamp-1.png" alt="Self-inking Stamp with date" class="showcase-img" width="70">
-                    </a>
-                  
-                    <div class="showcase-content">
-                  
-                      <a href="#">
-                        <h4 class="showcase-title">Self-inking Stamp</h4>
-                      </a>
-                  
-                      <a href="#" class="showcase-category">With Date</a>
-                  
-                      <div class="price-box">
-                        <p class="price">Ksh 1,699</p>
-                        <del>Ksh 2,000</del>
-                      </div>
-                  
-                    </div>
-                  
-                  </div>
+                        if ($result && mysqli_num_rows($result) > 0) {
+                          while ($row = mysqli_fetch_assoc($result)) {
 
-                  <div class="showcase">
-                  
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/stamp-2.png" alt="Self-inking stamp with logo" class="showcase-img"
-                        width="70">
-                    </a>
-                  
-                    <div class="showcase-content">
-                  
-                      <a href="#">
-                        <h4 class="showcase-title">Logo Self-inking stamp</h4>
-                      </a>
-                  
-                      <a href="#" class="showcase-category">With custom logo</a>
-                  
-                      <div class="price-box">
-                        <p class="price">Ksh 1,693</p>
-                        <del>Ksh 2,540</del>
-                      </div>
-                    </div>
-                  </div>
+                            $poster = htmlspecialchars($row['poster']);
+                            $name = htmlspecialchars($row['name']);
+                            $price = number_format($row['price'], 2);
+                            $description = htmlspecialchars($row['description']);
+                            $category = htmlspecialchars($row['category']);
+                            $product_image = "./assets/images/products/" . $poster;
 
+                        echo '
+                          <div class="showcase">
 
+                            <a href="#" class="showcase-img-box">
+                              <img src="' . $product_image . '" alt="' . $name . '" width="70" class="showcase-img">
+                            </a>
 
-                  <div class="showcase">
-                  
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/wooden_stamp.jpg" alt="Wooden Stamp custom in all shapes, circle, oval and rectangle" class="showcase-img"
-                        width="70">
-                    </a>
-                  
-                    <div class="showcase-content">
-                  
-                      <a href="#">
-                        <h4 class="showcase-title">Wooden Stamp</h4>
-                      </a>
-                  
-                      <a href="#" class="showcase-category">custom in all shapes</a>
-                  
-                      <div class="price-box">
-                        <p class="price">Ksh 399</p>
-                        <del>Ksh 550</del>
-                      </div>
-                  
-                    </div>
-                  
-                  </div>
+                            <div class="showcase-content">
 
-                </div>
+                              <a href="#">
+                                <h4 class="showcase-title">' . $name . '</h4>
+                              </a>
 
-                <div class="showcase-container">
-                
-                  <div class="showcase">
-                
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/oa_pre-inked.png" alt="OA Pre-Inked Stamp" class="showcase-img"
-                        width="70">
-                    </a>
-                
-                    <div class="showcase-content">
-                
-                      <a href="#">
-                        <h4 class="showcase-title">OA Pre-Inked Stamp</h4>
-                      </a>
-                
-                      <a href="#" class="showcase-category">Comfotable,easy handling</a>
-                
-                      <div class="price-box">
-                        <p class="price">Ksh 1,799</p>
-                        <del>Ksh 2,399</del>
-                      </div>
-                
-                    </div>
-                
-                  </div>
-                
-                  <div class="showcase">
-                
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/flash_stamp.png" alt="Flash Stamp with High Quality ink and flash materials" class="showcase-img"
-                        width="70">
-                    </a>
-                
-                    <div class="showcase-content">
-                
-                      <a href="#">
-                        <h4 class="showcase-title">Flash Stamp</h4>
-                      </a>
-                
-                      <a href="#" class="showcase-category">High Quality</a>
-                
-                      <div class="price-box">
-                        <p class="price">Ksh 1,999</p>
-                        <del>Ksh 2,299</del>
-                      </div>
-                
-                    </div>
-                
-                  </div>
-                
-                  <div class="showcase">
-                
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/Premier_Line.png" alt="mens winter leathers jackets" class="showcase-img"
-                        width="70">
-                    </a>
-                
-                    <div class="showcase-content">
-                
-                      <a href="#">
-                        <h4 class="showcase-title">Premier Line Stamp</h4>
-                      </a>
-                
-                      <a href="#" class="showcase-category">Flash, Ink, Snap</a>
-                
-                      <div class="price-box">
-                        <p class="price">Ksh 1,999</p>
-                        <del>Ksh 2,888</del>
-                      </div>
-                
-                    </div>
-                
-                  </div>
-                
-                  <div class="showcase">
-                
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/stamp_pad.png" alt="Metalic Stamp pad" class="showcase-img"
-                        width="70">
-                    </a>
-                
-                    <div class="showcase-content">
-                
-                      <a href="#">
-                        <h4 class="showcase-title">Stamp pad</h4>
-                      </a>
-                
-                      <a href="#" class="showcase-category">Metalic pad</a>
-                
-                      <div class="price-box">
-                        <p class="price">Ksh 399</p>
-                        <del>Ksh 559</del>
-                      </div>
-                
-                    </div>
-                
-                  </div>
+                              <a href="#" class="showcase-category">' . $category . '</a>
+
+                              <div class="price-box">
+                                <p class="price">Ksh ' . $price . '</p>
+                                <del>Ksh ' . number_format($row['price'] * 1.2, 2) . '</del>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        ';
+                        }
+                        } else {
+                        echo "<p>No products found in this category.</p>";
+                        }
+
+                        ?>
                 
                 </div>
 
               </div>
 
             </div>
+
+
+
+
+
+
+
+
 
             <div class="product-showcase">
             

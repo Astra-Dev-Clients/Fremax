@@ -28,12 +28,7 @@
   // check if there are products    
  
   // get the first product
-  $first_product = $products[0];
-  $first_product_name = $first_product['name'];
-  $first_product_price = $first_product['price'];
-  $first_product_description = $first_product['description'];
-  $first_product_category = $first_product['category'];
-  $first_product_image = $first_product['poster'];
+
 
 
 
@@ -83,9 +78,10 @@
             <div class="main-navgation hide-for-mobile">
               <a href="#">Collections</a>
               <a href="dater.php">Dater Stamps</a>
-              <a href="#">Pocket Stamps</a>
-              <a href="#">Heavy Duty</a>
-              <a href="#">Company Seals</a>
+              <a href="pocket.php">Pocket Stamps</a>
+              <a href="heavy.php">Heavy Duty</a>
+              <a href="plain.php">Plain Text</a>
+              <a href="company.php">Company Seals</a>
             </div>
 
             <div class="mobile-navgation hide-for-desktop">
@@ -94,9 +90,10 @@
               </div>
               <a href="#">Collections</a>
               <a href="dater.php">Dater Stamps</a>
-              <a href="#">Pocket Stamps</a>
-              <a href="#">Heavy Duty</a>
-              <a href="#">Company Seals</a>
+              <a href="pocket.php">Pocket Stamps</a>
+              <a href="heavy.php">Heavy Duty</a>
+              <a href="plain.php">Plain Text</a>
+              <a href="company.php">Company Seals</a>
             </div>
           </div>
 
@@ -141,7 +138,7 @@
       <section class="hero mt-5">
         <div class="container">
           <div class="hero-content">
-            <h1>Stamps</h1>
+            <h1>Stamps Collections</h1>
             <p>
               We are the leading manufacturer of stamps in Kenya. We have a
               wide range of stamps to choose from. We also do custom stamps.
@@ -154,101 +151,100 @@
       </section>
 
 
-      <section class="product-wrapper container">
-        <div class="container">
-          <div class="product-images-wrapper">
-            <div class="preview-image-wrapper">
-              <img
-                src="../../dashboard/admin/<?= $first_product_image ?>"
-                class="preview-image"
-                alt="Product Image"
-              />
-              <div class="arrows hide-for-desktop">
-                <div class="next">
-                  <img src="./images/icon-next.svg" alt="Next Icon" />
-                </div>
-                <div class="prev">
-                  <img src="./images/icon-previous.svg" alt="Previous Icon" />
-                </div>
-              </div>
-              <div class="count">
-                <p>
-                  <span class="current"></span> of
-                  <span class="total"></span>
-                </p>
-              </div>
-            </div>
+<section class="product-wrapper container">
 
-            <div class="thumbs-wrapper hide-for-mobile">
-              <div class="thumb-image active">
-                <img
-                  src="../../dashboard/admin/<?= $first_product_image ?>"
-                  alt="<?= $first_product_name ?>  Image"
-                />
-              </div>
-              <div class="thumb-image">
-                <img
-                  src="../../dashboard/admin/<?= $first_product_image ?>"
-                    alt="<?= $first_product_name ?>  Image"
-                />
-              </div>
-              <div class="thumb-image">
-                <img
-                  src="../../dashboard/admin/<?= $first_product_image ?>"
-                  alt="<?= $first_product_name ?>  Image"
-                />
-              </div>
-              <div class="thumb-image">
-                <img
-                  src="../../dashboard/admin/<?= $first_product_image ?>"
-                  alt="<?= $first_product_name ?>  Image"
-                />
-              </div>
-            </div>
+<?php if ($products): ?>
+ <?php   
+ 
+ $first_product = $products[0];
+  $first_product_name = $first_product['name'];
+  $first_product_price = $first_product['price'];
+  $first_product_description = $first_product['description'];
+  $first_product_category = $first_product['category'];
+  $first_product_image = $first_product['poster'];
+    ?>
+
+  <div class="container">
+    <div class="product-images-wrapper">
+      <div class="preview-image-wrapper">
+        <img
+          src="../../dashboard/admin/<?= $first_product_image ?>"
+          class="preview-image"
+          alt="Product Image"
+        />
+        <div class="arrows hide-for-desktop">
+          <div class="next">
+            <img src="./images/icon-next.svg" alt="Next Icon" />
           </div>
-          <div class="product-details-wrapper">
-            <p class="product-brabd"><?=$first_product_name?></p>
-            <h1 class="product-title"><?=$first_product_name?></h1>
-            <p class="product-description">
-              <?=$first_product_description?>
-              
-            </p>
-
-            <div class="product-price">
-              <div class="current-price-wrapper">
-                <h2>Ksh <span class="current-price"><?=$first_product_price?></span></h2>
-                <span class="discount">50%</span>
-              </div>
-              <div class="previous-price-wrapper">
-                <span> Ksh  <span class="previous-price"><?=$first_product_price +  ($first_product_price * 0.2)?></span></span>
-              </div>
-            </div>
-
-            <form action="#" class="add-to-cart-form">
-              <div class="product-quantity">
-                <button type="button" class="button minus">
-                  <img src="./images/icon-minus.svg" alt="Minus Icon" />
-                </button>
-                <span class="product-quantity-num">0</span>
-                <button type="button" class="button plus">
-                  <img src="./images/icon-plus.svg" alt="Plus Icon" />
-                </button>
-              </div>
-
-              <button
-                type="submit"
-                aria-label="Add to cart"
-                class="button add-btn"
-              >
-                <img src="./images/icon-cart.svg" alt="" />
-                Add to cart
-              </button>
-
-              <p class="form-alert"></p>
-            </form>
+          <div class="prev">
+            <img src="./images/icon-previous.svg" alt="Previous Icon" />
           </div>
         </div>
-      </section>
+        <div class="count">
+          <p>
+            <span class="current"></span> of
+            <span class="total"></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="thumbs-wrapper hide-for-mobile">
+        <?php for ($i = 0; $i < 4; $i++): ?>
+          <div class="thumb-image<?= $i === 0 ? ' active' : '' ?>">
+            <img
+              src="../../dashboard/admin/<?= $first_product_image ?>"
+              alt="<?= $first_product_name ?> Image"
+            />
+          </div>
+        <?php endfor; ?>
+      </div>
+    </div>
+
+    <div class="product-details-wrapper">
+      <p class="product-brabd"><?= $first_product_name ?></p>
+      <h1 class="product-title"><?= $first_product_name ?></h1>
+      <p class="product-description">
+        <?= $first_product_description ?>
+      </p>
+
+      <div class="product-price">
+        <div class="current-price-wrapper">
+          <h2>Ksh <span class="current-price"><?= $first_product_price ?></span></h2>
+          <span class="discount">50%</span>
+        </div>
+        <div class="previous-price-wrapper">
+          <span> Ksh <span class="previous-price"><?= $first_product_price + ($first_product_price * 0.2) ?></span></span>
+        </div>
+      </div>
+
+      <form action="#" class="add-to-cart-form">
+        <div class="product-quantity">
+          <button type="button" class="button minus">
+            <img src="./images/icon-minus.svg" alt="Minus Icon" />
+          </button>
+          <span class="product-quantity-num">0</span>
+          <button type="button" class="button plus">
+            <img src="./images/icon-plus.svg" alt="Plus Icon" />
+          </button>
+        </div>
+
+        <button type="submit" aria-label="Add to cart" class="button add-btn">
+          <img src="./images/icon-cart.svg" alt="" />
+          Add to cart
+        </button>
+
+        <p class="form-alert"></p>
+      </form>
+    </div>
+  </div>
+
+<?php else: ?>
+  <div class="no-products">
+    <p>No products available.</p>
+  </div>
+<?php endif; ?>
+
+</section>
 
 
 

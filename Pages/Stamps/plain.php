@@ -3,23 +3,8 @@
  include "../../database/db.php";
 
 
-
-
-//  CREATE TABLE products (
-//   id INT AUTO_INCREMENT PRIMARY KEY,
-//   poster VARCHAR(255) NOT NULL,
-//   name VARCHAR(100) NOT NULL,
-//   price DECIMAL(10, 2) NOT NULL,
-//   description TEXT NOT NULL,
-//   category VARCHAR(50) NOT NULL,
-//   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-// );
-
-
-
-
 //  get all products
- $query = "SELECT * FROM products where category = 'Stamps' AND subcategory = 'Dater_Stamp'";
+ $query = "SELECT * FROM products where category = 'Stamps' AND subcategory = 'Plain_Text'";
  $result = mysqli_query($conn, $query);
  $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -33,7 +18,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Astra Softwares" />
+    <meta name="author" content="Mohamed Aridah" />
     <link
       rel="icon"
       type="image/png"
@@ -69,11 +54,10 @@
             </div>
 
             <div class="main-navgation hide-for-mobile">
-            <a href="index.php">Collections</a>
+              <a href="index.php">Collections</a>
               <a href="dater.php">Dater Stamps</a>
               <a href="pocket.php">Pocket Stamps</a>
               <a href="heavy.php">Heavy Duty</a>
-              <a href="plain.php">Plain Text</a>
               <a href="company.php">Company Seals</a>
             </div>
 
@@ -85,7 +69,6 @@
               <a href="dater.php">Dater Stamps</a>
               <a href="pocket.php">Pocket Stamps</a>
               <a href="heavy.php">Heavy Duty</a>
-              <a href="plain.php">Plain Text</a>
               <a href="company.php">Company Seals</a>
             </div>
           </div>
@@ -130,14 +113,9 @@
       <section class="hero mt-5">
         <div class="container">
           <div class="hero-content">
-            <h1>Dater Stamp</h1>
+            <h1>Plain Text (No Date) Stamps</h1>
             <p>
-            This are self inking stamps with an inbuilt date part. all you need to do is to adjust the date to the current and you are good to go.
-            Comes fitted with high-quality ink pad and can provide thousands of impressions.
-            The date part default colour is red while the text remains blue.This category comes in various shapes and sizes including oval, round and rectangle.
-            You can use this kind of stamp to stamp some date invoices and other time- sensitive documents.
-            The movable bands make routine tasks simple when using date stamps for month, day, and year.
-            </p>
+            They come in various sizes available and cost includes the rubber die mounted on the stamper. This self-Inking Line of text stamps covers most of your light stamping needs at the office, shop or at home.            </p>
             <button type="button" class="button shop-now-btn">
               Shop Now
             </button>
@@ -145,100 +123,134 @@
         </div>
       </section>
 
-      <section class="product-wrapper container">
 
-<?php if ($products): ?>
- <?php   
- 
- $first_product = $products[0];
-  $first_product_name = $first_product['name'];
-  $first_product_price = $first_product['price'];
-  $first_product_description = $first_product['description'];
-  $first_product_category = $first_product['category'];
-  $first_product_image = $first_product['poster'];
-    ?>
+      <?php
 
-  <div class="container">
-    <div class="product-images-wrapper">
-      <div class="preview-image-wrapper">
-        <img
-          src="../../dashboard/admin/<?= $first_product_image ?>"
-          class="preview-image"
-          alt="Product Image"
-        />
-        <div class="arrows hide-for-desktop">
-          <div class="next">
-            <img src="./images/icon-next.svg" alt="Next Icon" />
+  // get the first product
+        if (count($products) > 0) {
+            $first_product = $products[0];
+            $first_product = $products[0];
+            $first_product_name = $first_product['name'];
+            $first_product_price = $first_product['price'];
+            $first_product_description = $first_product['description'];
+            $first_product_category = $first_product['category'];
+            $first_product_image = $first_product['poster'];
+
+
+            echo'
+            
+                  <section class="product-wrapper container">
+        <div class="container">
+          <div class="product-images-wrapper">
+            <div class="preview-image-wrapper">
+              <img
+                src="../../dashboard/admin/<?= $first_product_image  ?>"
+                class="preview-image"
+                alt="Product Image"
+              />
+              <div class="arrows hide-for-desktop">
+                <div class="next">
+                  <img src="./images/icon-next.svg" alt="Next Icon" />
+                </div>
+                <div class="prev">
+                  <img src="./images/icon-previous.svg" alt="Previous Icon" />
+                </div>
+              </div>
+              <div class="count">
+                <p>
+                  <span class="current"></span> of
+                  <span class="total"></span>
+                </p>
+              </div>
+            </div>
+
+            <div class="thumbs-wrapper hide-for-mobile">
+              <div class="thumb-image active">
+                <img
+                  src="../../dashboard/admin/<?= $first_product_image ?>"
+                  alt="<?= $first_product_name ?>  Image"
+                />
+              </div>
+              <div class="thumb-image">
+                <img
+                  src="../../dashboard/admin/<?= $first_product_image ?>"
+                    alt="<?= $first_product_name ?>  Image"
+                />
+              </div>
+              <div class="thumb-image">
+                <img
+                  src="../../dashboard/admin/<?= $first_product_image ?>"
+                  alt="<?= $first_product_name ?>  Image"
+                />
+              </div>
+              <div class="thumb-image">
+                <img
+                  src="../../dashboard/admin/<?= $first_product_image ?>"
+                  alt="<?= $first_product_name ?>  Image"
+                />
+              </div>
+            </div>
           </div>
-          <div class="prev">
-            <img src="./images/icon-previous.svg" alt="Previous Icon" />
+          <div class="product-details-wrapper">
+            <p class="product-brabd"><?=$first_product_name?></p>
+            <h1 class="product-title"><?=$first_product_name?></h1>
+            <p class="product-description">
+              <?=$first_product_description?>
+              
+            </p>
+
+            <div class="product-price">
+              <div class="current-price-wrapper">
+                <h2>Ksh <span class="current-price"><?=$first_product_price?></span></h2>
+                <span class="discount">50%</span>
+              </div>
+              <div class="previous-price-wrapper">
+                <span class="previous-price"><?=$first_product_price + 200?></span>
+              </div>
+            </div>
+
+            <form action="#" class="add-to-cart-form">
+              <div class="product-quantity">
+                <button type="button" class="button minus">
+                  <img src="./images/icon-minus.svg" alt="Minus Icon" />
+                </button>
+                <span class="product-quantity-num">0</span>
+                <button type="button" class="button plus">
+                  <img src="./images/icon-plus.svg" alt="Plus Icon" />
+                </button>
+              </div>
+
+              <button
+                type="submit"
+                aria-label="Add to cart"
+                class="button add-btn"
+              >
+                <img src="./images/icon-cart.svg" alt="" />
+                Add to cart
+              </button>
+
+              <p class="form-alert"></p>
+            </form>
           </div>
         </div>
-        <div class="count">
-          <p>
-            <span class="current"></span> of
-            <span class="total"></span>
-          </p>
-        </div>
-      </div>
+      </section>
+            
+        
+            ';
+        
+        } else {
+            // Handle the case where there are no products
+            $first_product = null;
 
-      <div class="thumbs-wrapper hide-for-mobile">
-        <?php for ($i = 0; $i < 4; $i++): ?>
-          <div class="thumb-image<?= $i === 0 ? ' active' : '' ?>">
-            <img
-              src="../../dashboard/admin/<?= $first_product_image ?>"
-              alt="<?= $first_product_name ?> Image"
-            />
-          </div>
-        <?php endfor; ?>
-      </div>
-    </div>
+            echo '<p class="container">No products found.</p>';
 
-    <div class="product-details-wrapper">
-      <p class="product-brabd"><?= $first_product_name ?></p>
-      <h1 class="product-title"><?= $first_product_name ?></h1>
-      <p class="product-description">
-        <?= $first_product_description ?>
-      </p>
+        }
 
-      <div class="product-price">
-        <div class="current-price-wrapper">
-          <h2>Ksh <span class="current-price"><?= $first_product_price ?></span></h2>
-          <span class="discount">50%</span>
-        </div>
-        <div class="previous-price-wrapper">
-          <span> Ksh <span class="previous-price"><?= $first_product_price + ($first_product_price * 0.2) ?></span></span>
-        </div>
-      </div>
 
-      <form action="#" class="add-to-cart-form">
-        <div class="product-quantity">
-          <button type="button" class="button minus">
-            <img src="./images/icon-minus.svg" alt="Minus Icon" />
-          </button>
-          <span class="product-quantity-num">0</span>
-          <button type="button" class="button plus">
-            <img src="./images/icon-plus.svg" alt="Plus Icon" />
-          </button>
-        </div>
+        ?>
 
-        <button type="submit" aria-label="Add to cart" class="button add-btn">
-          <img src="./images/icon-cart.svg" alt="" />
-          Add to cart
-        </button>
 
-        <p class="form-alert"></p>
-      </form>
-    </div>
-  </div>
 
-<?php else: ?>
-  <div class="no-products">
-    <p>No products available.</p>
-  </div>
-<?php endif; ?>
-
-</section>
 
 
 
@@ -250,7 +262,7 @@
 
    <?php
 
-          $getproducts = "SELECT * FROM products where category = 'Stamps' AND subcategory = 'Dater_Stamp'";
+          $getproducts = "SELECT * FROM products where category = 'Stamps' AND subcategory = 'Plain_Text'";
           $result = mysqli_query($conn, $getproducts);
 
         
@@ -260,7 +272,7 @@
 
           // Loop through the products and display them in a container
       
-                      $sql = "SELECT * FROM products WHERE category = 'Stamps' AND subcategory = 'Dater_Stamp' ";
+                      $sql = "SELECT * FROM products WHERE category = 'Stamps' AND subcategory = 'Plain_Text'";
                       $result = $conn->query($sql);
       
                       if ($result->num_rows > 0) {

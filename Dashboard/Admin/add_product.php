@@ -554,8 +554,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <option value="" disabled selected>-- Select sub category --</option> 
                                       <option value="Dater_Stamp">Dater Stamp</option>
                                       <option value="Pocket_Stamp">Pocket Stamp</option>
-                                      <option value="Pocket_Stamp">Heavy Stamp</option>
-                                      <option value="Pocket_Stamp">Plain Text (Non Dater) Stamp</option>
+                                      <option value="Heavy_Duty">Heavy Stamp</option>
+                                      <option value="Plain_Text">Plain Text (Non Dater) Stamp</option>
+                                      <option value="Company_Seal">Company_Seal</option>
                                     </select>
                                     <!-- <input type="text" id="subcategory" name="subcategory" class="form-control" required placeholder="Enter sub category"> -->
                                 </div>
