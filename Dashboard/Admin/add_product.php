@@ -507,7 +507,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <h3 class="text-center title-2">Create Product</h3>
                             </div>
                             <hr>
-                    <form action="add_product.php" method="post" enctype="multipart/form-data" novalidate="novalidate">
+                            <form action="add_product.php" method="post" enctype="multipart/form-data" novalidate="novalidate">
                             <div class="form-group">
                                     <label for="product-image" class="control-label mb-1">Product Image</label>
                                     <div class="drop-zone" id="drop-zone">
@@ -539,34 +539,85 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <div class="form-group">
                                     <label for="product-category" class="control-label mb-1">Category</label>
-                                    <select id="product-category" name="product-category" class="form-control" required>
+                                    <select id="product-category" name="product-category" class="form-control" required onchange="updateSubCategories()">
                                         <option value="" disabled selected>-- Select category --</option>
                                         <option value="Stamps">Stamps</option>
-                                        <!-- <option value="Printing">Printing</option>
+                                        <option value="Printing">Printing</option>
                                         <option value="Design">Design</option>
-                                        <option value="Branding">Branding</option> -->
+                                        <option value="Branding">Branding</option>
                                     </select>
-                                </div>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="subcategory" class="control-label mb-1">Sub Category</label>
-                                    <select name="subcategory" id="subcategory"  class="form-control" >
-                                        <option value="" disabled selected>-- Select sub category --</option> 
-                                      <option value="Dater_Stamp">Dater Stamp</option>
-                                      <option value="Pocket_Stamp">Pocket Stamp</option>
-                                      <option value="Heavy_Duty">Heavy Stamp</option>
-                                      <option value="Plain_Text">Plain Text (Non Dater) Stamp</option>
-                                      <option value="Company_Seal">Company_Seal</option>
-                                    </select>
-                                    <!-- <input type="text" id="subcategory" name="subcategory" class="form-control" required placeholder="Enter sub category"> -->
-                                </div>
+                                        <div class="form-group">
+                                        <label for="subcategory" class="control-label mb-1">Sub Category</label>
+                                        <select name="subcategory" id="subcategory" class="form-control">
+                                            <option value="" disabled selected>-- Select sub category --</option> 
+                                        </select>
+                                        </div>
+
+                                    <script>
+                                    const subCategories = {
+                                        Stamps: [
+                                        "Dater Stamp",
+                                        "Pocket Stamp",
+                                        "Heavy Duty",
+                                        "Plain Text (Non Dater) Stamp",
+                                        "Company Seal"
+                                        ],
+                                        Branding: [
+                                        "T-shirts",
+                                        "Custom Cups",
+                                        "Reflectors",
+                                        "Dust Coats",
+                                        "Diaries",
+                                        "Roller Banner",
+                                        "Flags"
+                                        ],
+                                        Printing: [
+                                        "Letter Heads",
+                                        "Receipts",
+                                        "Business Cards",
+                                        "Stikers",
+                                        "Banners",
+                                        "Job Cards",
+                                        "Name Holders"
+                                        ],
+                                        Design: [
+                                        "Website Design",
+                                        "Logos",
+                                        "Posters",
+                                        "E-cards",
+                                        "Wedding invitations"
+                                        ]
+                                    };
+
+                                    function updateSubCategories() {
+                                        const categorySelect = document.getElementById("product-category");
+                                        const subcategorySelect = document.getElementById("subcategory");
+                                        const selectedCategory = categorySelect.value;
+
+                                        // Clear existing subcategory options
+                                        subcategorySelect.innerHTML = '<option value="" disabled selected>-- Select sub category --</option>';
+
+                                        // Add new subcategory options
+                                        if (subCategories[selectedCategory]) {
+                                        subCategories[selectedCategory].forEach(sub => {
+                                            const option = document.createElement("option");
+                                            option.value = sub.replace(/\s+/g, '_'); // Option value
+                                            option.textContent = sub; // Option label
+                                            subcategorySelect.appendChild(option);
+                                        });
+                                        }
+                                    }
+                                    </script>
+
                                 <div>
                                     <button id="event-submit-button" type="submit" class="btn btn-lg btn-primary btn-block">
                                         <i class="fa fa-calendar-check-o fa-lg"></i>&nbsp;
                                         <span id="submit-button-text">Submit Event</span>
                                     </button>
                                 </div>
-                </form>
+                         </form>
                         </div>
                     </div>
                 </div>
@@ -683,21 +734,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const img = new Image();
         const objectUrl = URL.createObjectURL(file);
 
-        img.onload = function () {
-            if (img.width === 1279 && img.height === 1279) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    preview.src = e.target.result;
-                    preview.style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            } else {
-                alert("Image must be 1279x1279 pixels!");
-                fileInput.value = ""; // Reset file input
-                preview.style.display = "none";
-            }
-            URL.revokeObjectURL(objectUrl);
-        };
+   
 
         img.src = objectUrl;
     }

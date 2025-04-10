@@ -56,6 +56,9 @@
       href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
       rel="stylesheet"/>
 
+      <!-- fontawesome cdn -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8d7x1z5l5e5e5e5e5e5e5e5e5e5e5e5e5e5" crossorigin="anonymous" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Main Css File -->
     <link rel="stylesheet" href="./css/main.css" />
@@ -309,6 +312,93 @@
 </section>
 
 
+
+<!-- Footer -->
+<footer class="text-center container text-lg-start bg-body-tertiary text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with Fremax Graphics on social networks:</span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <a href="https://facebook.com/fremaxgraphics" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://twitter.com/fremaxgraphics" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="mailto:info@fremaxgraphics.com" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="https://instagram.com/fremaxgraphics" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://linkedin.com/company/fremaxgraphics" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/fremaxgraphics" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+
+  <!-- Section: Links -->
+  <section>
+    <div class="container text-center text-md-start mt-5">
+      <div class="row mt-3">
+        <!-- About -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-palette me-3"></i>Fremax Graphics
+          </h6>
+          <p>
+            At Fremax Graphics, we turn your ideas into stunning visual creations. From branding to design and print, we’ve got you covered.
+          </p>
+        </div>
+
+        <!-- Services -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">Services</h6>
+          <p><a href="#!" class="text-reset">Logo Design</a></p>
+          <p><a href="#!" class="text-reset">Flyers & Posters</a></p>
+          <p><a href="#!" class="text-reset">Branding Kits</a></p>
+          <p><a href="#!" class="text-reset">Social Media Graphics</a></p>
+        </div>
+
+        <!-- Quick links -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">Quick Links</h6>
+          <p><a href="#!" class="text-reset">Portfolio</a></p>
+          <p><a href="#!" class="text-reset">Pricing</a></p>
+          <p><a href="#!" class="text-reset">FAQs</a></p>
+          <p><a href="#!" class="text-reset">Contact Us</a></p>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> Nairobi CBD, Kenya</p>
+          <p><i class="fas fa-envelope me-3"></i> info.fremax@gmail.com</p>
+          <p><i class="fas fa-phone me-3"></i> +254 726 874 170</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © <script>document.write(new Date().getFullYear());</script> Fremax Graphics. All rights reserved.
+  </div>
+</footer>
+<!-- Footer -->
+
+
+
 <style>
   .card {
   margin-bottom: 30px;
@@ -363,6 +453,39 @@
     </div>
     <!-- Overlay -->
     <div class="overlay"></div>
+
+
+    <style>
+    .float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	left:40px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float{
+	margin-top:16px;
+}
+  </style>
+
+
+
+
+  <!-- whatsappp button -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://api.whatsapp.com/send?phone=254726874170&text=Hello%21%20." class="float" target="_blank">
+<i class="fa fa-whatsapp my-float"></i>
+</a>
+
     <script src="./js/main.js"></script>
   </body>
 </html>

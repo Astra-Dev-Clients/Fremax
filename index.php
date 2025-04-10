@@ -39,6 +39,7 @@ include 'database/db.php';
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+
 </head>
 
 <body>
@@ -801,7 +802,7 @@ include 'database/db.php';
 
             <div class="banner-content">
 
-              <p class="banner-subtitle">Trending 3D Signage</p>
+              <p class="banner-subtitle">3D Signages</p>
 
               <h2 class="banner-title">Hottest Deals!</h2>
 
@@ -821,12 +822,12 @@ include 'database/db.php';
 
             <div class="banner-content">
 
-              <p class="banner-subtitle">Trending accessories</p>
+              <p class="banner-subtitle">Shirts & hoodies</p>
 
               <h2 class="banner-title">Top Products</h2>
 
               <p class="banner-text">
-                starting at &dollar; <b>15</b>.00
+                starting at  <b>Ksh 800</b>
               </p>
 
               <a href="#" class="banner-btn">Shop now</a>
@@ -841,12 +842,12 @@ include 'database/db.php';
 
             <div class="banner-content">
 
-              <p class="banner-subtitle">Sale Offer</p>
+              <p class="banner-subtitle">Custom Logos</p>
 
               <h2 class="banner-title">Featured Offers</h2>
 
               <p class="banner-text">
-                starting at &dollar; <b>29</b>.99
+                starting at Ksh<b>1000</b>
               </p>
 
               <a href="#" class="banner-btn">Shop now</a>
@@ -977,26 +978,124 @@ include 'database/db.php';
 
 
 
-        <div class="product-box">
-
-          <!--
-            - PRODUCT MINIMAL
-          -->
-
+    <div class="product-box">
           <div class="product-minimal">
-
             <div class="product-showcase">
-
               <h2 class="title">Top Stamps</h2>
-
-              <div class="showcase-wrapper has-scrollbar">
-
-                <div class="showcase-container">
-
-
-                 <?php
+                <div class="showcase-wrapper has-scrollbar">
+          <div class="showcase-container">
+                    <?php
                     // Assuming $conn is your database connection
                     $query = "SELECT * FROM products WHERE category = 'Stamps' LIMIT 0,4";
+                    $result = mysqli_query($conn, $query);
+
+                    if ($result && mysqli_num_rows($result) > 0) {
+                      while ($row = mysqli_fetch_assoc($result)) {
+
+                        $poster = htmlspecialchars($row['poster']);
+                        $name = htmlspecialchars($row['name']);
+                        $price = number_format($row['price'], 2);
+                        $description = htmlspecialchars($row['description']);
+                        $category = htmlspecialchars($row['category']);
+                        $product_image = "./Dashboard/admin/" . $poster;
+
+                    echo '
+                      <div class="showcase" onclick="window.location="./pages/stamps/index.php"">
+
+                        <a href="./pages/stamps/index.php" class="showcase-img-box">
+                          <img src="'.$product_image.'" alt="' .$name .'" width="70" class="showcase-img">
+                        </a>
+
+                        <div class="showcase-content">
+
+                          <a href="pages/stamps/index.php">
+                            <h4 class="showcase-title">' . $name . '</h4>
+                          </a>
+
+                          <a href="#" class="showcase-category">' . $category . '</a>
+
+                          <div class="price-box">
+                            <p class="price">Ksh ' . $price . '</p
+                            <del>Ksh ' . number_format($row['price'] * 1.2, 2) . '</del>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    ';
+                    }
+                  } else {
+                    echo "<p>No products found in this category.</p>";
+                  }
+
+            ?>
+          </div>
+
+        <div class="showcase-container">  
+              <?php
+
+                  // Assuming $conn is your database connection
+                        $query = "SELECT * FROM products WHERE category = 'Stamps' LIMIT 4,4";
+                        $result = mysqli_query($conn, $query);
+
+                        if ($result && mysqli_num_rows($result) > 0) {
+                          while ($row = mysqli_fetch_assoc($result)) {
+
+                            $poster = htmlspecialchars($row['poster']);
+                            $name = htmlspecialchars($row['name']);
+                            $price = number_format($row['price'], 2);
+                            $description = htmlspecialchars($row['description']);
+                            $category = htmlspecialchars($row['category']);
+                            $product_image = "./assets/images/products/" . $poster;
+
+                        echo '
+                          <div class="showcase">
+
+                            <a href="#" class="showcase-img-box">
+                              <img src="' . $product_image . '" alt="' . $name . '" width="70" class="showcase-img">
+                            </a>
+
+                            <div class="showcase-content">
+
+                              <a href="#">
+                                <h4 class="showcase-title">' . $name . '</h4>
+                              </a>
+
+                              <a href="#" class="showcase-category">' . $category . '</a>
+
+                              <div class="price-box">
+                                <p class="price">Ksh ' . $price . '</p>
+                                <del">Ksh ' . number_format($row['price'] * 1.2, 2) . '</del>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        ';
+                        }
+                        } else {
+                        echo "<p>No products found in this category.</p>";
+                        }
+
+                  ?>
+                
+          </div>
+
+        </div>
+
+      </div>
+
+
+            <div class="product-showcase">
+            
+              <h2 class="title">Branding</h2>
+            
+              <div class="showcase-wrapper  has-scrollbar">
+            
+                <div class="showcase-container">
+                <?php
+                    // Assuming $conn is your database connection
+                    $query = "SELECT * FROM products WHERE category = 'Branding' LIMIT 0,4";
                     $result = mysqli_query($conn, $query);
 
                     if ($result && mysqli_num_rows($result) > 0) {
@@ -1039,271 +1138,58 @@ include 'database/db.php';
                   }
 
             ?>
-          </div>
-        <div class="showcase-container">
-                
-              <?php
 
-                  // Assuming $conn is your database connection
-                        $query = "SELECT * FROM products WHERE category = 'Stamps' LIMIT 4,4";
-                        $result = mysqli_query($conn, $query);
+            
+                </div>
+            
+                <div class="showcase-container">
+            
+        <?php
+                    // Assuming $conn is your database connection
+                    $query = "SELECT * FROM products WHERE category = 'Branding' LIMIT 4,4";
+                    $result = mysqli_query($conn, $query);
 
-                        if ($result && mysqli_num_rows($result) > 0) {
-                          while ($row = mysqli_fetch_assoc($result)) {
+                    if ($result && mysqli_num_rows($result) > 0) {
+                      while ($row = mysqli_fetch_assoc($result)) {
 
-                            $poster = htmlspecialchars($row['poster']);
-                            $name = htmlspecialchars($row['name']);
-                            $price = number_format($row['price'], 2);
-                            $description = htmlspecialchars($row['description']);
-                            $category = htmlspecialchars($row['category']);
-                            $product_image = "./assets/images/products/" . $poster;
+                        $poster = htmlspecialchars($row['poster']);
+                        $name = htmlspecialchars($row['name']);
+                        $price = number_format($row['price'], 2);
+                        $description = htmlspecialchars($row['description']);
+                        $category = htmlspecialchars($row['category']);
+                        $product_image = "./Dashboard/admin/" . $poster;
 
-                        echo '
-                          <div class="showcase">
+                    echo '
+                      <div class="showcase">
 
-                            <a href="#" class="showcase-img-box">
-                              <img src="' . $product_image . '" alt="' . $name . '" width="70" class="showcase-img">
-                            </a>
+                        <a href="#" class="showcase-img-box">
+                          <img src="'.$product_image.'" alt="' . $name . '" width="70" class="showcase-img">
+                        </a>
 
-                            <div class="showcase-content">
+                        <div class="showcase-content">
 
-                              <a href="#">
-                                <h4 class="showcase-title">' . $name . '</h4>
-                              </a>
+                          <a href="#">
+                            <h4 class="showcase-title">' . $name . '</h4>
+                          </a>
 
-                              <a href="#" class="showcase-category">' . $category . '</a>
+                          <a href="#" class="showcase-category">' . $category . '</a>
 
-                              <div class="price-box">
-                                <p class="price">Ksh ' . $price . '</p>
-                                <del>Ksh ' . number_format($row['price'] * 1.2, 2) . '</del>
-                              </div>
-
-                            </div>
-
+                          <div class="price-box">
+                            <p class="price">Ksh ' . $price . '</p
+                            <del>Ksh '. number_format($row['price'] * 1.2, 2) . '</del>
                           </div>
-                        ';
-                        }
-                        } else {
-                        echo "<p>No products found in this category.</p>";
-                        }
 
-                        ?>
-                
-                </div>
+                        </div>
 
-              </div>
-
-            </div>
-
-
-
-
-
-
-
-
-
-            <div class="product-showcase">
-            
-              <h2 class="title">Branding</h2>
-            
-              <div class="showcase-wrapper  has-scrollbar">
-            
-                <div class="showcase-container">
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/t-shirt-1.jpg" alt="running & trekking shoes - white" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Tshirts</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Custom T-shirts</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 699</p>
-                        <del>Ksh 899</del>
                       </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/hoodie-1.jpg" alt="Custom hoodie Branding" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Hoodies</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Custom hoodie Branding</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 700</p>
-                        <del>Ksh 1000</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/helmet-1.jpg" alt="Custom helmet branding" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Helmets</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Custom helmet branding</a>
-            
-                      <div class="price-box">
-                        <p class="price">ksh 1,099</p>
-                        <del> Ksh 1,399</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/reflators.jpg" alt="Custom  Reflators" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Reflators</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Custom  Reflators</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 1,099</p>
-                        <del>Ksh 1,267</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                </div>
-            
-                <div class="showcase-container">
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/products/bag-1.jpg" alt="Custom Branded Shopping bags" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Shopping Bags</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Custom Shopping bags</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 900</p>
-                        <del>Ksh 1,000</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/book-4.jpg" alt="Branding Books and Diaries" class="showcase-img" width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Books and Diaries</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Books and diaries</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 700</p>
-                        <del>Ksh 899</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/mug-1.jpg" alt="Mugs and Cups branding" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Mugs and Cups</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Mugs and Cups branding</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 200</p>
-                        <del>Ksh 300</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/pen-3.jpg" alt="Customized Promotional Ball Point pens" class="showcase-img" width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Customized Pens</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Pen Branding</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 100</p>
-                        <del>Ksh 278</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
+                    ';
+                    }
+                  } else {
+                    echo "<p>No products found in this category.</p>";
+                  }
+
+        ?>
+
             
                 </div>
             
@@ -1316,203 +1202,107 @@ include 'database/db.php';
               <h2 class="title">Printing</h2>
             
               <div class="showcase-wrapper  has-scrollbar">
+
             
                 <div class="showcase-container">
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/business-card-2.jpg" alt="Custom Business card Design" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Business Card</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Custom Business card</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 1,500</p>
-                        <del>Ksh 1,677</del>
+                <?php
+                    // Assuming $conn is your database connection
+                    $query = "SELECT * FROM products WHERE category = 'Printing' LIMIT 0,4";
+                    $result = mysqli_query($conn, $query);
+
+                    if ($result && mysqli_num_rows($result) > 0) {
+                      while ($row = mysqli_fetch_assoc($result)) {
+
+                        $poster = htmlspecialchars($row['poster']);
+                        $name = htmlspecialchars($row['name']);
+                        $price = number_format($row['price'], 2);
+                        $description = htmlspecialchars($row['description']);
+                        $category = htmlspecialchars($row['category']);
+                        $product_image = "./Dashboard/admin/" . $poster;
+
+                    echo '
+                      <div class="showcase">
+
+                        <a href="#" class="showcase-img-box">
+                          <img src="'.$product_image.'" alt="' . $name . '" width="70" class="showcase-img">
+                        </a>
+
+                        <div class="showcase-content">
+
+                          <a href="#">
+                            <h4 class="showcase-title">' . $name . '</h4>
+                          </a>
+
+                          <a href="#" class="showcase-category">' . $category . '</a>
+
+                          <div class="price-box">
+                            <p class="price">Ksh ' . $price . '</p
+                            <del>Ksh ' . number_format($row['price'] * 1.2, 2) . '</del>
+                          </div>
+
+                        </div>
+
                       </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/banner-6.jpg" alt="custom banners design" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Banners</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Custom Banners</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 1,500</p>
-                        <del>Ksh 1,800</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/rollout-banner-1.jpg" alt="custom Roll-up banners" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                      <h4 class="showcase-title">Custom Roll-up Banners</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">professional Roll-up banners</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 2,000</p>
-                        <del>Ksh 2,300</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/job-card-1.jpg" alt="men's leather reversible belt" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Custom Job Cards</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Job card</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 3,00</p>
-                        <del>Ksh 4,00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
+                    ';
+                    }
+                  } else {
+                    echo "<p>No products found in this category.</p>";
+                  }
+
+        ?>
+                         
             
                 </div>
+
             
+
                 <div class="showcase-container">
             
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/stiker-1.jpg" alt="custom stiker design" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Stikers</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Custom stiker Design</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 100</p>
-                        <del>Ksh 200</del>
+                <?php
+                    // Assuming $conn is your database connection
+                    $query = "SELECT * FROM products WHERE category = 'Printing' LIMIT 4,4";
+                    $result = mysqli_query($conn, $query);
+
+                    if ($result && mysqli_num_rows($result) > 0) {
+                      while ($row = mysqli_fetch_assoc($result)) {
+
+                        $poster = htmlspecialchars($row['poster']);
+                        $name = htmlspecialchars($row['name']);
+                        $price = number_format($row['price'], 2);
+                        $description = htmlspecialchars($row['description']);
+                        $category = htmlspecialchars($row['category']);
+                        $product_image = "./Dashboard/admin/" . $poster;
+
+                    echo '
+                      <div class="showcase">
+
+                        <a href="#" class="showcase-img-box">
+                          <img src="'.$product_image.'" alt="' . $name . '" width="70" class="showcase-img">
+                        </a>
+
+                        <div class="showcase-content">
+
+                          <a href="#">
+                            <h4 class="showcase-title">' . $name . '</h4>
+                          </a>
+
+                          <a href="#" class="showcase-category">' . $category . '</a>
+
+                          <div class="price-box">
+                            <p class="price">Ksh ' . $price . '</p
+                            <del>Ksh ' . number_format($row['price'] * 1.2, 2) . '</del>
+                          </div>
+
+                        </div>
+
                       </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/letter-h-2.jpg" alt="Proffesional Letter heads" class="showcase-img" width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Letter Heads</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Proffesional Letter Heads</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 800</p>
-                        <del>Ksh 850</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/Brochure-2.jpg" alt="custom professional company Bronchures" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Company Bronchures</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">custom Bronchures</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 2,000</p>
-                        <del>Ksh 2,700</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="./assets/images/company-profile-2.jpg" alt="Custom Proffesional Company Profile" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Custom Company Profile</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Company profile</a>
-            
-                      <div class="price-box">
-                        <p class="price">Ksh 3,000</p>
-                        <del>Ksh 3,400</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
+                    ';
+                    }
+                  } else {
+                    echo "<p>No products found in this category.</p>";
+                  }
+
+                   ?>
             
                 </div>
             
@@ -1701,629 +1491,72 @@ include 'database/db.php';
 
             <div class="product-grid">
 
-              <div class="showcase">
+            <?php
 
-                <div class="showcase-banner">
+          // Fetch products
+            $sql = "SELECT * FROM products";
+            $result = $conn->query($sql);
 
-                  <img src="./assets/images/products/Company_seal.jpg" alt="Mens Winter Leathers Jackets" width="300" class="product-img default">
-                  <img src="./assets/images/products/Company_seal_1.jpg" alt="Mens Winter Leathers Jackets" width="300" class="product-img hover">
+            // Loop through products
+            while ($row = $result->fetch_assoc()) {
+            ?>
+          <div class="showcase">
 
-                  <p class="showcase-badge">15%</p>
+            <div class="showcase-banner">
 
-                  <div class="showcase-actions">
+              <img src="./dashboard/admin/<?php echo htmlspecialchars($row['poster']); ?>" 
+                  alt="<?php echo htmlspecialchars($row['name']); ?>" 
+                  width="300" class="product-img default">
 
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
+              <img src="./dashboard/admin/<?php echo htmlspecialchars($row['poster']); ?>" 
+                  alt="<?php echo htmlspecialchars($row['name']); ?>" 
+                  width="300" class="product-img hover">
 
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
+              <p class="showcase-badge">15%</p>
 
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
+              <div class="showcase-actions">
+                <button class="btn-action">
+                  <ion-icon name="heart-outline"></ion-icon>
+                </button>
+                <button class="btn-action">
+              <ion-icon name="eye-outline"></ion-icon>
+            </button>
+            <button class="btn-action">
+              <ion-icon name="repeat-outline"></ion-icon>
+            </button>
+            <button class="btn-action">
+              <ion-icon name="bag-add-outline"></ion-icon>
+            </button>
+          </div>
 
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
+    </div>
+
+                    <div class="showcase-content">
+                      <a href="#" class="showcase-category"><?php echo htmlspecialchars($row['category']); ?></a>
+
+                      <a href="#">
+                        <h3 class="showcase-title"><?php echo htmlspecialchars($row['name']); ?></h3>
+                      </a>
+
+                      <div class="showcase-rating">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
+                      </div>
+
+                      <div class="price-box">
+                        <p class="price">Ksh <?php echo number_format($row['price'], 2); ?></p>
+                        <del>Ksh <?php echo number_format($row['price'] * 1.11, 2); ?></del>
+                      </div>
+                    </div>
 
                   </div>
+                <?php
+                }
 
-                </div>
-
-                <div class="showcase-content">
-
-                  <a href="#" class="showcase-category">Company Seal</a>
-
-                  <a href="#">
-                    <h3 class="showcase-title">Proffesional Custom Company Seal</h3>
-                  </a>
-
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-
-                  <div class="price-box">
-                    <p class="price">Ksh 1,800</p>
-                    <del>Ksh 2,000</del>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/products/stamp-1.png" alt="Self-inking stamp designed for speed, precision, and durability" class="product-img default"
-                    width="300">
-                  <img src="./assets/images/products/stamp-2.png" alt="Self-inking stamp designed for speed, precision, and durability" class="product-img hover"
-                    width="300">
-              
-                  <p class="showcase-badge angle black">sale</p>
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Self-Inking Stamps</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Designed for speed, precision, and durability</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 1,800</p>
-                    <del>Ksh 2,000</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/products/t-shirt-3.jpg" alt="custom T-shirts with vibrant, long-lasting prints for businesses, events, and promotions." class="product-img default"
-                    width="300">
-                  <img src="./assets/images/products/t-shirt-4.jpg" alt="custom T-shirts with vibrant, long-lasting prints for businesses, events, and promotions." class="product-img hover"
-                    width="300">
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">T-shirt Branding</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Custom T-shirts with vibrant, long-lasting prints for businesses, events, and promotions.</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 2,400</p>
-                    <del>Ksh 3,000</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/products/3d-Sign-1.jpg" alt="Bold, durable, and eye-catching!. Perfect for storefronts, offices, and events" class="product-img default" width="300">
-                  <img src="./assets/images/products/3d-sign-4.jpg" alt="Bold, durable, and eye-catching!. Perfect for storefronts, offices, and events" class="product-img hover" width="300">
-              
-                  <p class="showcase-badge angle pink">new</p>
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">3D Signage</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Bold, durable, and eye-catching!. Perfect for storefronts, offices, and events.</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 4,000</p>
-                    <del>Ksh 5,000</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/business-card-2.jpg" alt="Stand out with high-quality business cards that leave a mark!" class="product-img default"
-                    width="300">
-                  <img src="./assets/images/business-card-4.jpg" alt="Stand out with high-quality business cards that leave a mark!" class="product-img hover"
-                    width="300">
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Business Card</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Stand out with high-quality business cards that leave a mark!</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 859</p>
-                    <del>Ksh 900</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/label-1.jpg" alt="Pocket Watch Leather Pouch" class="product-img default"
-                    width="300">
-                  <img src="./assets/images/lable-2.jpg" alt="Pocket Watch Leather Pouch" class="product-img hover"
-                    width="300">
-              
-                  <p class="showcase-badge angle black">sale</p>
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Custom Product Lable</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Pocket Watch Leather Pouch</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 400</p>
-                    <del>Ksh 500</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/book-3.jpg" alt="Stylish, durable, and perfect for notes, journaling, or business use" class="product-img default"
-                    width="300">
-                  <img src="./assets/images/book-4.jpg" alt="Stylish, durable, and perfect for notes, journaling, or business use" class="product-img hover" width="300">
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Notebooks and Diaries</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Stylish, durable, and perfect for notes, journaling, or business use</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 450</p>
-                    <del>Ksh 500</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/Brochure-2.jpg" alt="bronchure professional designs that highlight your business with style." class="product-img default"
-                    width="300">
-                  <img src="./assets/images/Bronchure-1.jpg" alt="bronchure professional designs that highlight your business with style." class="product-img hover"
-                    width="300">
-              
-                  <p class="showcase-badge angle black">sale</p>
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Company Bronchure</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Clean, professional designs that highlight your business with style.</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 1,500</p>
-                    <del>Ksh 1,800</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/pen-2.jpg" alt="Sleek, high-quality pens customized with your logo for a lasting impression." class="product-img default"
-                    width="300">
-                  <img src="./assets/images/pen-4.jpg" alt="Sleek, high-quality pens customized with your logo for a lasting impression." class="product-img hover"  width="300">
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Custom Pens</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Sleek, high-quality pens customized with your logo for a lasting impression.</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 100</p>
-                    <del>Ksh 150</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/products/medal-2.png" alt="High-quality, personalized medals for sports, awards, and special events" class="product-img default"
-                    width="300">
-                  <img src="./assets/images/products/medal-1.png" alt="High-quality, personalized medals for sports, awards, and special events" class="product-img hover" width="300">
-              
-                  <p class="showcase-badge angle black">sale</p>
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Custom Medals</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">High-quality, personalized medals for sports, awards, and special events</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 2,000</p>
-                    <del>Ksh 2,300</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/stiker-1.jpg" alt="Durable, vibrant stickers for branding, promotions, and personal use." class="product-img default"
-                    width="300">
-                  <img src="./assets/images/stiker-2.jpg" alt="Durable, vibrant stickers for branding, promotions, and personal use." class="product-img hover"
-                    width="300">
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Custom Stickers</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Durable, vibrant stickers for branding, promotions, and personal use.</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 100</p>
-                    <del>Ksh 159</del>
-                  </div>
-              
-                </div>
-              
-              </div>
-
-              <div class="showcase">
-              
-                <div class="showcase-banner">
-                  <img src="./assets/images/products/bracelet-1.jpg" alt="Better Basics French Terry Sweatshorts"
-                    class="product-img default" width="300">
-                  <img src="./assets/images/products/bracelet-2.jpg" alt="Better Basics French Terry Sweatshorts"
-                    class="product-img hover" width="300">
-              
-                  <p class="showcase-badge angle black">sale</p>
-              
-                  <div class="showcase-actions">
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-              
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Custom Bracelets</a>
-              
-                  <h3>
-                    <a href="#" class="showcase-title">Stylish, durable, and perfect for promotions, events, and personal use.</a>
-                  </h3>
-              
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-              
-                  <div class="price-box">
-                    <p class="price">Ksh 200</p>
-                    <del>Ksh 250</del>
-                  </div>
-              
-                </div>
-              
-              </div>
+                ?>
 
             </div>
 
@@ -2638,10 +1871,6 @@ include 'database/db.php';
           <a href="#" class="footer-category-link">Banners</a>
           <a href="#" class="footer-category-link">Job Cards</a>
           <a href="#" class="footer-category-link">Name Holders</a>
-          <!-- <a href="#" class="footer-category-link">nosepin</a>
-          <a href="#" class="footer-category-link">chain</a>
-          <a href="#" class="footer-category-link">Earrings</a>
-          <a href="#" class="footer-category-link">Couple rings</a> -->
         </div>
 
         <div class="footer-category-box">
@@ -2878,7 +2107,7 @@ include 'database/db.php';
 	width:60px;
 	height:60px;
 	bottom:40px;
-	right:40px;
+	left:40px;
 	background-color:#25d366;
 	color:#FFF;
 	border-radius:50px;
